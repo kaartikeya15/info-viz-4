@@ -34,6 +34,15 @@ Promise.all([
     function updateMap(year) {
         const yearData = filteredData.filter(d => d.Year == year);
 
+        // Calculate the total emissions
+        const totalEmissions = yearData.reduce((sum, d) => {
+            const emission = +d['Annual CO₂ emissions'];
+            return sum + (isNaN(emission) ? 0 : emission); // Add emission if it's valid
+        }, 0);
+
+        // Update the total emissions display
+        d3.select('#emissionsValue').text(`${totalEmissions.toLocaleString()} tonnes`);
+
         svg.selectAll('path')
             .data(geojson.features)
             .join('path')
@@ -59,7 +68,7 @@ Promise.all([
                     .style('visibility', 'visible')
                     .html(countryData
                         ? `<strong>${countryData.Entity}</strong><br>Emissions: ${(+countryData['Annual CO₂ emissions']).toLocaleString()} tonnes`
-                        : `<strong>${d.properties.name}</strong><br>No data`);
+                        : `<strong>${d.properties.name}</strong><br>Emissions: 0 tonnes`);
             })
             .on('mousemove', event => {
                 d3.select('#tooltip')
@@ -86,10 +95,4 @@ Promise.all([
 d3.select('body')
     .append('div')
     .attr('id', 'tooltip')
-    .style('position', 'absolute')
-    .style('visibility', 'hidden')
-    .style('background', '#fff')
-    .style('padding', '8px')
-    .style('border', '1px solid #ccc')
-    .style('border-radius', '4px')
-    .style('box-shadow', '0px 4px 6px rgba(0, 0, 0, 0.1)');
+    .style('visibility', 'hidden');
