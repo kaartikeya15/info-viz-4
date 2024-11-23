@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CO₂ Emissions Choropleth Map</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <h1>CO₂ Emissions by Country (1949 - 2023)</h1>
+    <p>Visualize annual CO₂ emissions by country. Use the slider to change the year. Hover over countries for more details.</p>
+    <div id="map"></div>
+    <div id="controls">
+        <label for="yearSlider">Select Year:</label>
+        <input type="range" id="yearSlider" min="1949" max="2023" value="2023" step="1">
+        <span id="yearLabel">2023</span>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
