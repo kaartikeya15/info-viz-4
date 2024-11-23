@@ -10,12 +10,17 @@
 <body>
     <h1>CO₂ Emissions by Country (1949 - 2023)</h1>
     <p>Visualize annual CO₂ emissions by country. Use the slider to change the year. Hover over countries for more details.</p>
+    <div id="totalEmissions">
+        <h2>Total CO₂ Emissions</h2>
+        <p id="emissionsValue">0 tonnes</p>
+    </div>
     <div id="map"></div>
     <div id="controls">
         <label for="yearSlider">Select Year:</label>
         <input type="range" id="yearSlider" min="1949" max="2023" value="2023" step="1">
         <span id="yearLabel">2023</span>
     </div>
+
     <script src="index.js"></script>
 </body>
 </html>
